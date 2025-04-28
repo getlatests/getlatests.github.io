@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Hello World | GitHub Pages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col items-center justify-center p-4">
+    <div class="text-center max-w-2xl mx-auto">
+        <!-- Main content -->
+        <div class="floating mb-12">
+            <h1 class="gradient-text text-6xl md:text-8xl font-bold mb-6">Hello World!</h1>
+            <p class="text-gray-300 text-xl mb-8">Welcome to my GitHub Pages site</p>
+        </div>
+
+        <!-- Interactive elements -->
+        <div class="bg-gray-800 bg-opacity-50 rounded-xl p-8 backdrop-blur-sm border border-gray-700 shadow-xl">
+            <div class="flex justify-center mb-6">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center pulse">
+                    <i class="fas fa-globe text-white text-4xl"></i>
+                </div>
+            </div>
+            
+            <p class="text-gray-300 mb-6">This simple page demonstrates what you can do with GitHub Pages using just HTML, CSS, and JavaScript.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <button onclick="changeColor()" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-all">
+                    Change Colors
+                </button>
+                <button onclick="animateText()" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-white transition-all">
+                    Animate Text
+                </button>
+                <button onclick="showMessage()" class="px-6 py-2 bg-pink-600 hover:bg-pink-700 rounded-lg text-white transition-all">
+                    Show Message
+                </button>
+            </div>
+            
+            <div id="message" class="hidden mt-4 p-4 bg-gray-700 rounded-lg text-gray-200"></div>
+        </div>
+
+        <!-- GitHub info -->
+        <div class="mt-12 text-gray-400">
+            <p class="mb-2">To create your own GitHub Pages site:</p>
+            <div class="bg-gray-800 rounded-lg p-3 font-mono text-sm inline-block">
+                <span class="text-green-400">1.</span> Create a repository named <span class="text-blue-300">username.github.io</span><br>
+                <span class="text-green-400">2.</span> Add an <span class="text-yellow-300">index.html</span> file<br>
+                <span class="text-green-400">3.</span> Push to GitHub and wait a few minutes
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-16 text-gray-500 text-sm">
+        Made with <i class="fas fa-heart text-red-400 mx-1"></i> for GitHub Pages
+    </footer>
+
+    <script>
+        // Change gradient colors
+        function changeColor() {
+            const colors = [
+                "from-blue-500 to-teal-400",
+                "from-purple-500 to-pink-500",
+                "from-yellow-400 to-red-500",
+                "from-green-400 to-blue-500",
+                "from-red-500 to-orange-500"
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.className = `min-h-screen bg-gradient-to-br ${randomColor} flex flex-col items-center justify-center p-4`;
+        }
+
+        // Animate the hello world text
+        function animateText() {
+            const hello = document.querySelector('h1');
+            hello.classList.add('animate-bounce');
+            setTimeout(() => {
+                hello.classList.remove('animate-bounce');
+            }, 1000);
+        }
+
+        // Show a random message
+        function showMessage() {
+            const messages = [
+                "GitHub Pages makes web hosting easy!",
+                "You can customize this page however you like.",
+                "Try adding your own content and styles.",
+                "Check the GitHub documentation for more info.",
+                "This page is fully responsive on all devices."
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = randomMessage;
+            messageDiv.classList.remove('hidden');
+            messageDiv.classList.add('block');
+        }
+
+        // Add floating effect to all floating elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const floatingElements = document.querySelectorAll('.floating');
+            floatingElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
